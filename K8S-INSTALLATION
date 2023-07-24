@@ -1,21 +1,59 @@
                         STEPS TO INSTALL KUBECTL IN EC2
-UBUNTU MEDIUM AS A VIRTUAL MACHINE VERSION OK K8S IS Kubernetes 1.27
+USE UBUNTU MEDIUM AS A VIRTUAL MACHINE VERSION
+ALLOW ALL TRAFFIC 
  
-IMP:-Install dicker as a normal user and give the sudo permission to the normal user
+IMP:-Install docker as a normal user and give the sudo permission to the normal user
 
 # curl -O https://s3.us-west-2.amazonaws.com/amazon-eks/1.27.1/2023-04-19/bin/linux/amd64/kubectl
+
 # curl -O https://s3.us-west-2.amazonaws.com/amazon-eks/1.27.1/2023-04-19/bin/linux/amd64/kubectl.sha256
+
 # sha256sum -c kubectl.sha256
+
 # openssl sha1 -sha256 kubectl
+
 # chmod +x ./kubectl
+
 # mv kubectl /usr/local/bin
+
 # kubectl version --short --client
                         
                        STEPS TO INSTALL MINIKUBE
 # curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+
 # sudo install minikube-linux-amd64 /usr/local/bin/minikube
+
 # minikube start
+
 =) ONCE MINIKUBE START THE NODES WILL INSTALL AND NODES WILL GET IP ADDRESS 
 # kubectl get nodes
- IT WILL SHOW THE KUBERNETES NODES
-=) NOW WE HAVE TO INSTALL PODS
+IT WILL SHOW THE KUBERNETES NODES
+
+             =) NOW WE HAVE TO INSTALL PODS
+THROUGH YAML FILE WE WILL CREATE A PODS COPY THE SAME FILE AND PASTE IN YOU YAML FILE.
+
+Vi pods.yaml 
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+spec:
+  containers:
+  - name: nginx
+    image: nginx:1.14.2
+    ports:
+    - containerPort: 80
+SAVE AND EXIT 
+# kubectl get pods =) check your pods details
+
+#  kubectl get pods -o wide =) it will show the full details including pods ip address
+
+NOW WE HAVE TO LOGIN TO THE MINIKUBE CLUSTER 
+# minikube ssh =) CHECK AND VERIFY 
+# curl ip address of pods
+
+
+
+
+
